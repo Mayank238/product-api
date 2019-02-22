@@ -39,9 +39,9 @@
       <button class="btn btn-info" @click="b()">Done</button>
     </div>
     <div v-if='(!seen) && (!seen2)'>
-      <app-addproduct></app-addproduct>
+      <app-addproduct :seen='seen' @seenwasupdate='seen = $event'></app-addproduct>
       <div class="space"></div>
-      <button class="btn btn-info" @click="b()">Done</button>
+
     </div>
   </div>
 </template>
@@ -81,19 +81,15 @@ import addproduct from '@/components/addproduct'
         this.$store.state.sobj = _.find(this.$store.state.a,{'gtin14': event})
         console.log(event)
       },
-      b(){
-        this.seen = ! this.seen
-        this.$store.dispatch("addData")
-        this.$store.state.any.name=''
-        this.$store.state.any.gtin14=''
-        // this.$store.state.a = _.concate(this.$store.state.a,this.$store.state.any)
-      },
+
       del(val){
         this.$store.state.a = _.remove(this.$store.state.a, {'gtin14': val })
       },
       add(){
         this.seen2 = false
         this.seen =false
+        // this.$store.state.any[0].name=''
+        // this.$store.state.any[0].gtin14=''
 
       }
     }

@@ -9,21 +9,25 @@ export const store = new Vuex.Store({
 		info: null,
 		a:[],
 		sobj:[],
-		b:[],
-		any:[{'gtin14':'' ,'name':''}]
-	},
-	mutations:{
-		addData: state => {
-			state.info = _.concat(state.a,state.any)
-      console.log(state.a)
-		}
-	},
-	actions:{
-		addData : ({commit}) => {
-        commit('addData')
-
-		}
 	}
+	// mutations:{
+	// 	addData: state => {
+	// 		state.b = _.concat(state.a,state.any)
+ //      console.log(state.a)
+	// 	},
+	// 	finalData: state => {
+	// 		state.info = state.b
+	// 	}
+	// },
+	// actions:{
+	// 	addData : ({commit}) => {
+ //        commit('addData')
+
+	// 	},
+	// 	finalData: ({commit}) => {
+	// 		  commit('finalData')
+	// 	}
+	// }
 	// mutations:{
 	// 	update: (state, productid) => {
  //        state.name = _.find(state.a,{'gtin14}': 'productid'})

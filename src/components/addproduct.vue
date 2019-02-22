@@ -24,10 +24,10 @@ import _ from 'lodash'
 
 		methods:{
 			b(){
-        this.seen = ! this.seen
+        this.$store.state.seen = ! this.$store.state.seen
         var fd= [{name: this.poductname, gtin14: this.productid}]
         this.$store.state.info = _.concat(this.$store.state.a, fd)
-        this.$emit("seenwasupdate", this.seen)
+
 
         // this.$store.state.a = _.concate(this.$store.state.a,this.$store.state.any)
       }

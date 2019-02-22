@@ -4,7 +4,7 @@
       <h1>CRUD APPLICATION</h1>
     </div>
       <div class="space"></div>
-    <div v-if='seen'>
+    <div v-if='this.$store.state.seen'>
       <div class=" container ">
       <div class="row">
         <button class="btn btn-outline-dark col-lg-2" @click="add()">
@@ -33,13 +33,13 @@
       </table>
       </div>
     </div>
-    <div v-if='(!seen) && seen2' class="container">
+    <div v-if='(!this.$store.state.seen) && seen2' class="container">
       <app-edit></app-edit>
       <div class="space"></div>
       <button class="btn btn-info" @click="b()">Done</button>
     </div>
-    <div v-if='(!seen) && (!seen2)'>
-      <app-addproduct :seen='seen' @seenwasupdate='seen = $event'></app-addproduct>
+    <div v-if='(!this.$store.state.seen) && (!seen2)'>
+      <app-addproduct ></app-addproduct>
       <div class="space"></div>
 
     </div>
@@ -53,7 +53,6 @@ import addproduct from '@/components/addproduct'
   export default{
     data(){
       return{
-        seen: true,
         seen2:true
       }
     },
@@ -76,7 +75,7 @@ import addproduct from '@/components/addproduct'
     },
     methods:{
       a(event){
-        this.seen =! this.seen
+        this.$store.state.seen =! this.$store.state.seen
 
         this.$store.state.sobj = _.find(this.$store.state.a,{'gtin14': event})
         console.log(event)
@@ -87,7 +86,7 @@ import addproduct from '@/components/addproduct'
       },
       add(){
         this.seen2 = false
-        this.seen =false
+        this.$store.state.seen =false
         // this.$store.state.any[0].name=''
         // this.$store.state.any[0].gtin14=''
 

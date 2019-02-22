@@ -9,6 +9,7 @@ export const store = new Vuex.Store({
 		info: null,
 		a:[],
 		sobj:[],
+		seen: true
 	}
 	// mutations:{
 	// 	addData: state => {

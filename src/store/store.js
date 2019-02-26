@@ -1,43 +1,40 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
-
+import axios from 'axios'
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
 	state:{
-		info: null,
-		a:[],
-		sobj:[],
-		seen: true
+		products: null,
+		productdata:[],
+		seen: true,
+		seen2:true,
+		load:true,
+		name:'',
+		gtin14:'',
+		author:''
+	},
+	mutations:{
+       apicall: (state, res) =>{
+       	state.load = false
+       state.products = res
+       },
+       addProduct:
+       (state) => {
+       	state.products.push({'name':state.name , 'gtin14': state.gtin14, 'author': state.author})
+       }
+	},
+	actions: {
+		apicall: ({commit}) =>{
+      axios.get(process.env.ROOT_API)
+           .then((response) => {
+           	// this.$store.state.info = response.data
+            commit('apicall',response.data)
+           })
+		},
+		addProduct: ({commit}) => {
+			commit('addProduct')
+		}
 	}
-	// mutations:{
-	// 	addData: state => {
-	// 		state.b = _.concat(state.a,state.any)
- //      console.log(state.a)
-	// 	},
-	// 	finalData: state => {
-	// 		state.info = state.b
-	// 	}
-	// },
-	// actions:{
-	// 	addData : ({commit}) => {
- //        commit('addData')
-
-	// 	},
-	// 	finalData: ({commit}) => {
-	// 		  commit('finalData')
-	// 	}
-	// }
-	// mutations:{
-	// 	update: (state, productid) => {
- //        state.name = _.find(state.a,{'gtin14}': 'productid'})
-	// 	}
-	// },
-	// actions:{
-	// 	update: ({commit}, productid) => {
- //         commit('update', productid)
-	// 	}
-	// }
-
 })

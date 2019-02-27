@@ -64,6 +64,9 @@ import addproduct from '@/components/addproduct'
     data(){
       return{
         Product: null,
+        Pid: null,
+        Pid2:0,
+        flag: false
 
       }
     },
@@ -86,8 +89,7 @@ import addproduct from '@/components/addproduct'
       editProduct(data,index){
         // this.$store.state.seen =! this.$store.state.seen
         this.Product = data
-        this.removeclass();
-         document.getElementById(index).className = 'activeClass'
+        this.Pid = index
         this.$modal.show('edit-product');
         console.log(index)
 
@@ -113,13 +115,16 @@ import addproduct from '@/components/addproduct'
       },
       editdone(){
         // this.$store.state.seen = ! this.$store.state.seen
+        this.removeclass(this.Pid2);
+        document.getElementById(this.Pid).className = 'activeClass'
+        this.Pid2 = this.Pid
         this.$modal.hide('edit-product');
 
       },
-      removeclass(){
-        for (var i = 0; i <this.data.length; i++) {
-          document.getElementById(i).classList.remove('activeClass')
-        }
+      removeclass(event){
+        // for (var i = 0; i <this.data.length; i++) {
+          document.getElementById(event).classList.remove('activeClass')
+        // }
       }
     }
 
